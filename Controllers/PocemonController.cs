@@ -33,12 +33,12 @@ namespace Manager.PokeApi.Controllers
             try
             {
                 await _poke.GetPokemonList(pokemonName);
-                // TODO: Version Control
+
                 return Ok();
             }
             catch (Exception ex)
             {
-                //het we can add log
+                // we can add log this
                 return BadRequest();
             }
         }

@@ -29,6 +29,6 @@ namespace Manager.PokeApi.Database.Model
         /// a List of named API resorces
         /// </summary>
         [JsonPropertyName("results")]
-        public List<NamedAPIResorce> Results { get; set; }
+        public List<NamedAPIResource> Results { get; set; }
     }
 }

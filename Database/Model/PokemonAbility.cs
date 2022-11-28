@@ -21,6 +21,6 @@ namespace Manager.PokeApi.Database.Model
         /// object contains ability name and uri
         /// </summary>
         [JsonPropertyName("ability")]
-        public NamedAPIResorce Ability { get; set; }
+        public NamedAPIResource Ability { get; set; }
     }
 }

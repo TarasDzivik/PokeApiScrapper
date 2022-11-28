@@ -1,7 +1,9 @@
-﻿namespace Manager.PokeApi.Services.Interfaces
+﻿using Manager.PokeApi.Models.Responces;
+
+namespace Manager.PokeApi.Services.Interfaces
 {
     public interface IPokemonService
     {
-        Task GetPokemonList(string pokemonName);
+        Task<PokeSearchResponse> GetPokemonList(string pokemonName);
     }
 }

@@ -1,0 +1,12 @@
+﻿﻿$ objects still missing, will likely need to create.
+$
+$ pokemonform
+$ pokemonspecies
+$ ability
+$ type
+$ item
+$ version
+$ move
+$ movelearnmethod
+$ versiongroup
+$ stat
