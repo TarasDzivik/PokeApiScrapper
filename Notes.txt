@@ -1,0 +1,11 @@
+$ as a base transaction value
+$ per level
+$ per iv
+$ for moves that are not natural
+$ for evolutions if stone required/special criteria
+$ for baby forms
+$ for any gender that has a rate below 50%
+$ for legendary/mythic
+$ for shiny
+$ for encounter rates that are over X
+$ if they want an abiluty is a hidden ability
