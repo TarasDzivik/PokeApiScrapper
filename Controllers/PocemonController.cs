@@ -1,4 +1,6 @@
-﻿using Manager.PokeApi.Services.Interfaces;
+﻿using Manager.PokeApi.Database.Model;
+using Manager.PokeApi.Models.Responces;
+using Manager.PokeApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,18 +30,53 @@ namespace Manager.PokeApi.Controllers
         [HttpGet("PokemonNameList/{pokemonName}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> GetPokemonList(string pokemonName)
+        public async Task<ActionResult<SearchResult<PokemonBase>>> GetPokemonList(string pokemonName)
         {
             try
             {
-                await _poke.GetPokemonList(pokemonName);
+                var pokemonReturn = await _poke.GetPokemonList(pokemonName);
+                var listReturn = pokemonReturn.PokemonList;
 
-                return Ok();
+                if (pokemonReturn.Errors.Count > 0)
+                {
+                    throw new Exception(string.Join(", ", pokemonReturn.Errors));
+                }
+                
+                return Ok(new SearchResult<PokemonBase>
+                {
+                    Count = listReturn.Count(),
+                    Next = null,
+                    Previos = null,
+                    Results = listReturn
+                });
             }
             catch (Exception ex)
             {
-                // we can add log this
+                // log ex.message  to our error log (if it exist)
                 return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Api Call for a data on the selected pokemon
+        /// </summary>
+        /// <returns>An object containing pokemon</returns>
+        [HttpGet("PokemonDetails/{pokemonUrl}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SearchResult<PokeDetails>>> GetPokemon(int pokemonId)
+        {
+            try
+            {
+                PokeDetails respone = new();
+                var pokemonDetail = await _poke.GetPokemonDetail(pokemonId);
+
+                return Ok(respone);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+                throw;
             }
         }
         #endregion

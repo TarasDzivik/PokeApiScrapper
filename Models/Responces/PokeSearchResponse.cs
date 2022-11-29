@@ -14,6 +14,6 @@ namespace Manager.PokeApi.Models.Responces
         /// <summary>
         /// List of pokemon found in the search
         /// </summary>
-        public List<NamedAPIResource> PokemonList { get; set; }
+        public List<PokemonBase> PokemonList { get; set; }
     }
 }

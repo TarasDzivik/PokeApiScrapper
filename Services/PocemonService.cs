@@ -11,12 +11,13 @@ namespace Manager.PokeApi.Services
     /// </summary>
     public class PocemonService : IPokemonService
     {
+        /// <inheritdoc />
         public async Task<PokeSearchResponse> GetPokemonList(string pokemonName)
         {
             PokeSearchResponse response = new()
             {
                 Errors = new List<string>(),
-                PokemonList = new List<NamedAPIResource>()
+                PokemonList = new List<PokemonBase>()
             };
             try
             {
@@ -29,20 +30,47 @@ namespace Manager.PokeApi.Services
 
                 var filteredPokemon = (from poke in pokemonLIst
                                        where poke.name.Contains(pokemonName)
+                                       orderby poke.name
                                        select poke).Take(10).ToList();
                 
                 if (filteredPokemon.Count < 1)
                 {
                     throw new Exception($"There were no matches for {pokemonName}");
                 }
+                List<PokemonBase> pokemonBases = new();
 
-                response.PokemonList.AddRange(filteredPokemon);
+                foreach (var p in filteredPokemon)
+                {
+                    var id = p.url.Split("/")[6];
+
+                    PokemonBase pb = new PokemonBase
+                    {
+                        PokemonName = p.name,
+                        PokemonId = int.Parse(id)
+                    };
+                    pokemonBases.Add(pb);
+                }
+
+                response.PokemonList.AddRange(pokemonBases);
                 return response;
             }
             catch (Exception ex)
             {
                 response.Errors.Add(ex.Message);
                 return response;
+            }
+        }
+        /// <inheritdoc />
+        public Task<PokeSearchResponse> GetPokemonDetail(int pokemonId)
+        {
+            try
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
             }
         }
     }

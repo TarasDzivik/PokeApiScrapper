@@ -18,5 +18,6 @@ namespace Manager.PokeApi.Database.Model
         /// </summary>
         [JsonPropertyName("url")]
         public string url { get; set; }
+
     }
 }
