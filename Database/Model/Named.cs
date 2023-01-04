@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿#nullable disable
+using System.Text.Json.Serialization;
 
 namespace Manager.PokeApi.Database.Model
 {
@@ -23,12 +24,12 @@ namespace Manager.PokeApi.Database.Model
         /// the URL for the previous page in the list
         /// </summary>
         [JsonPropertyName("previous")]
-        public bool? Previous { get; set; }
+        public string? Previous { get; set; }
 
         /// <summary>
         /// a List of named API resorces
         /// </summary>
         [JsonPropertyName("results")]
-        public List<NamedAPIResorce> Results { get; set; }
+        public List<NamedAPIResource> Results { get; set; } = null!;
     }
 }

@@ -8,80 +8,105 @@ namespace Manager.PokeApi.Database.Model
         /// Pokedex id (national dex)
         /// </summary>
         [JsonPropertyName("id")]
-        public int id { get; set; }
+        public int ID { get; set; }
+
         /// <summary>
         /// name of the pokemon
         /// </summary>
         [JsonPropertyName("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
+
         /// <summary>
         /// base expirience grandet for defeating
         /// </summary>
         [JsonPropertyName("base_expiriance")]
-        public int base_expiriance { get; set; }
+        public int Base_expiriance { get; set; }
+
         /// <summary>
         /// pokemon's height
         /// </summary>
         [JsonPropertyName("height")]
-        public int height { get; set; }
+        public int Height { get; set; }
+
         /// <summary>
         /// weight of the pokemon in hectrograms
         /// </summary>
         [JsonPropertyName("weight")]
-        public int weight { get; set; }
+        public int Weight { get; set; }
+
         /// <summary>
         /// Set for exactly pokemon used as the default for each species
         /// </summary>
         [JsonPropertyName("is_default")]
-        public bool is_defult { get; set; }
+        public bool Is_defult { get; set; }
+
         /// <summary>
         /// order for sorting. Almost national, except families age grouped together
         /// </summary>
         [JsonPropertyName("order")]
-        public int order { get; set; }
+        public int Order { get; set; }
+
         /// <summary>
         /// a list of abilities this pokemon could potentially have
         /// </summary>
         [JsonPropertyName("abilities")]
-        public List<PokemonAbility> abilities { get; set; }
+        public List<PokemonAbility> Abilities { get; set; }
+
         /// <summary>
         /// list of forms this pokemon can take on
         /// </summary>
         [JsonPropertyName("forms")]
-        public List<NamedAPIResorce> forms { get; set; }
+        public List<NamedAPIResource> Forms { get; set; }
+
         /// <summary>
         /// a list of game indeces relevant to pokemon item by generation
         /// </summary>
         [JsonPropertyName("game_indices")]
-        public List<VersionGameIndex> game_indices { get; set; }
+        public List<VersionGameIndex> Game_indices { get; set; }
+
         /// <summary>
         /// a list of items pokemon may be holding when encountered
         /// </summary>
         [JsonPropertyName("held_items")]
-        public List<PokemonHeldItem> held_items { get; set; }
+        public List<PokemonHeldItem> Held_items { get; set; }
+
         /// <summary>
         /// a link to a list of areas, as well as encounter details partaining to specific version
         /// </summary>
         [JsonPropertyName("location_area_encounters")]
-        public string location_area_encounters { get; set; }
+        public string Location_area_encounters { get; set; }
+
         /// <summary>
         /// a list of pokemon moves
         /// </summary>
         [JsonPropertyName("moves")]
-        public List<PokemonMove> moves { get; set; }
+        public List<PokemonMove> Moves { get; set; }
+
         /// <summary>
         /// a set of spirites used this pokemon in the game
         /// </summary>
         [JsonPropertyName("spirites")]
-        public PokemonSpirites spirites { get; set; }
+        public PokemonSpirites Spirites { get; set; }
+
         /// <summary>
         /// the species this pokemon belongs to
         /// </summary>
         [JsonPropertyName("species")]
-        public NamedAPIResorce species { get; set; }
+        public NamedAPIResource Species { get; set; }
 
-    
-    
+        /// <summary>
+        /// A list of base stat values for this pokemon
+        /// </summary>
+        [JsonPropertyName("Stats")]
+        public List<PokemonStat> Stats { get; set; }
+
+        /// <summary>
+        /// The types that the pokemon belongs to
+        /// </summary>
+        [JsonPropertyName("types")]
+        public List<PokemonType> Types { get; set; }
+
+
     }
 }
 

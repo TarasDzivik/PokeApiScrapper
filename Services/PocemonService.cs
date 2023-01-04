@@ -2,6 +2,7 @@
 using Flurl;
 using Flurl.Http;
 using Manager.PokeApi.Services.Interfaces;
+using Manager.PokeApi.Models.Responces;
 
 namespace Manager.PokeApi.Services
 {
@@ -10,22 +11,64 @@ namespace Manager.PokeApi.Services
     /// </summary>
     public class PocemonService : IPokemonService
     {
-        public async Task GetPokemonList(string pokemonName)
+        /// <inheritdoc />
+        public async Task<PokeSearchResponse> GetPokemonList(string pokemonName)
         {
+            PokeSearchResponse response = new()
+            {
+                Errors = new List<string>(),
+                PokemonList = new List<PokemonBase>()
+            };
             try
             {
                 // TODO: make enviremental variable
-                var pokemon = await "https://pokeapi.com/api/v2/"
+                var pokemon = await "https://pokeapi.co/api/v2/"
                     .AppendPathSegment($"pokemon/")
-                    .SetQueryParam("limit=1120")
+                    .SetQueryParam("limit=151")
                     .GetJsonAsync<Named>();
-                List<NamedAPIResorce> pokemonLIst = pokemon.Results;
 
-                var stop = 1;
+                if (pokemon == null ||
+                    pokemon.Results == null)
+                {
+                    throw new Exception("No pokemon were returned");
+                }
+
+                List<NamedAPIResource> pokemonLIst = pokemon.Results;
+
+                var filteredPokemon = (from poke in pokemonLIst
+                                       where poke.name.Contains(pokemonName)
+                                       orderby poke.name
+                                       select new PokemonBase
+                                       {
+                                           PokemonName = poke.name,
+                                           PokemonId = int.Parse(poke.url.Split("/")[6])
+                                       }).Take(10).ToList();
+                
+                if (filteredPokemon.Count < 1)
+                {
+                    throw new Exception($"There were no matches for {pokemonName}");
+                }
+
+                response.PokemonList.AddRange(filteredPokemon);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Errors.Add(ex.Message);
+                return response;
+            }
+        }
+        /// <inheritdoc />
+        public Task<PokeSearchResponse> GetPokemonDetail(int pokemonId)
+        {
+            try
+            {
+                return null;
             }
             catch (Exception ex)
             {
 
+                return null;
             }
         }
     }

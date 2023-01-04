@@ -5,7 +5,7 @@ namespace Manager.PokeApi.Database.Model
     /// <summary>
     /// object containing name and url for the resorces
     /// </summary>
-    public class NamedAPIResorce
+    public class NamedAPIResource
     {
         /// <summary>
         /// name of the object
@@ -18,5 +18,6 @@ namespace Manager.PokeApi.Database.Model
         /// </summary>
         [JsonPropertyName("url")]
         public string url { get; set; }
+
     }
 }

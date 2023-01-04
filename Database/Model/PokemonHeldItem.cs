@@ -8,13 +8,13 @@ namespace Manager.PokeApi.Database.Model
     public class PokemonHeldItem
     {
         /// <summary>
-        /// the item referenced pokenmon holds
+        /// The item referenced pokenmon holds
         /// </summary>
         [JsonPropertyName("item")]
-        public NamedAPIResorce Item { get; set; }
+        public NamedAPIResource Item { get; set; }
 
         /// <summary>
-        /// the details of the different versions in which the item is held
+        /// The details of the different versions in which the item is held
         /// </summary>
         [JsonPropertyName("version_deails")]
         public PokemonHeldItem VersionDetails { get; set; } 

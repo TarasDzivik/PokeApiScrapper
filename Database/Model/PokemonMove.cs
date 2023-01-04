@@ -11,7 +11,7 @@ namespace Manager.PokeApi.Database.Model
         /// object contains the name and url of the move that the pokemon can learn
         /// </summary>
         [JsonPropertyName("move")]
-        public NamedAPIResorce Move { get; set; }
+        public NamedAPIResource Move { get; set; }
 
         /// <summary>
         /// the details of the version in whith the pokemon can learn the move
